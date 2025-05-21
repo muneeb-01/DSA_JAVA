@@ -5,6 +5,19 @@ public class Main {
         list.insert_at_start(13);
         list.insert_at_start(14);
         list.insert_at_start(15);
+        list.insert_at_start(21);
+        list.insert_at_start(22);
+        list.insert_at_start(23);
+        list.insert_at_start(24);
+        list.reverse();
+        list.findMiddle();
+
+        LinkedList.Node temp = list.head;
+        while (temp.next != null){
+            temp = temp.next;
+        }
+        temp.next = list.head.next.next;
+        list.detectAndRemoveCycle();
         list.traverse();
     }
 }
@@ -93,5 +106,65 @@ Node head = null;
             current = current.next;
             System.out.println(current.data);
         }
+    }
+    void reverse() {
+        Node prev = null;
+        Node curr = head;
+        while (curr != null) {
+            Node next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+        System.out.println("List reversed.");
+    }
+
+    // Home Task 2: Find the Middle Element
+    void findMiddle() {
+        if (head == null) {
+            System.out.println("List is empty.");
+            return;
+        }
+        Node slow = head;
+        Node fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        System.out.println("Middle Element: " + slow.data);
+    }
+
+    // Home Task 3: Detect and Remove Cycle using Floyd’s Algorithm
+    void detectAndRemoveCycle() {
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                removeCycle(slow);
+                System.out.println("Cycle detected and removed.");
+                return;
+            }
+        }
+        System.out.println("No cycle detected.");
+    }
+
+    private void removeCycle(Node loopNode) {
+        Node ptr1 = head;
+        Node ptr2 = loopNode;
+
+        while (ptr1 != ptr2) {
+            ptr1 = ptr1.next;
+            ptr2 = ptr2.next;
+        }
+
+        Node prev = ptr2;
+        while (prev.next != ptr2) {
+            prev = prev.next;
+        }
+        prev.next = null; // Remove cycle
     }
 }
