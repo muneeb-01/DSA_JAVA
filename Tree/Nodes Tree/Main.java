@@ -2,16 +2,23 @@ public class Main {
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
 
-        tree.insert(2);
-        tree.insert(1);
-        tree.insert(5);
-        tree.insert(3);
-        tree.insert(6);
+        tree.insert(50);
+        tree.insert(30);
+        tree.insert(70);
+        tree.insert(20);
+        tree.insert(40);
+        tree.insert(60);
+        tree.insert(80);
 
         tree.delete(1);
 
+        tree.inorder();
+        tree.preorder();
+        tree.postorder();
 
+        System.out.println("Least Common Ancestor "+ tree.findLCA(20,40));
 
+        System.out.println("Given Tree is BST: "+tree.isBST());
 
     }
 }
@@ -127,5 +134,37 @@ class BinaryTree {
         }
         return node;
     }
+    boolean isBST() {
+        return isBSTUtil(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    private boolean isBSTUtil(Node node, int min, int max) {
+        if (node == null) return true;
+        if (node.data <= min || node.data >= max) return false;
+        return isBSTUtil(node.left, min, node.data) && isBSTUtil(node.right, node.data, max);
+    }
+
+    int findLCA(int n1, int n2) {
+        Node lcaNode = findLCARec(root, n1, n2);
+        return lcaNode != null ? lcaNode.data : -1; // Return -1 if no LCA found
+    }
+
+    private Node findLCARec(Node node, int n1, int n2) {
+        if (node == null) return null;
+
+        // If both n1 and n2 are smaller, LCA lies in left
+        if (n1 < node.data && n2 < node.data) {
+            return findLCARec(node.left, n1, n2);
+        }
+
+        // If both n1 and n2 are greater, LCA lies in right
+        if (n1 > node.data && n2 > node.data) {
+            return findLCARec(node.right, n1, n2);
+        }
+
+        // Otherwise, this node is the LCA
+        return node;
+    }
+
 
 }

@@ -5,7 +5,7 @@ public class Main {
         table.insert(54);
         table.insert(73);
         table.insert(102);
-
+        table.remove(53);
         table.traverse();
 
         System.out.println("Search 73: " + table.search(73)); // true
@@ -56,6 +56,11 @@ class Hash_Table {
         return table[key].get(val);
     }
 
+    void remove(int val) {
+        int key = val % table_length;
+        table[key].remove(val);
+    }
+
 
     class LinkedList {
         Node head = null;
@@ -94,7 +99,23 @@ class Hash_Table {
             }
             System.out.println();
         }
+        void remove(int val) {
+            if (head == null) return;
 
+            if (head.data == val) {
+                head = head.next;
+                return;
+            }
+
+            Node current = head;
+            while (current.next != null && current.next.data != val) {
+                current = current.next;
+            }
+
+            if (current.next != null) {
+                current.next = current.next.next;
+            }
+        }
         // 🔍 New method for searching a value in the linked list
         boolean search(int val){
             Node current = head;

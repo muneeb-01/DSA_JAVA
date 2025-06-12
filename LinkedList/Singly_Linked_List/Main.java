@@ -9,8 +9,10 @@ public class Main {
         list.insert_at_start(22);
         list.insert_at_start(23);
         list.insert_at_start(24);
+        list.traverse();
         list.reverse();
         list.findMiddle();
+        list.traverse();
 
         LinkedList.Node temp = list.head;
         while (temp.next != null){

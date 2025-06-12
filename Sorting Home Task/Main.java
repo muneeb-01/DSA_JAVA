@@ -5,7 +5,7 @@ public class Main {
         int[] arr = new int[]{2,4,5,6,7,8,9,5,6,3,5,3,2,5,6};
         Sorting sort = new Sorting();
 
-        sort.heapSort(arr);
+        sort.Bubble_Sort(1, arr);
 
         System.out.println(Arrays.toString(arr));
     }

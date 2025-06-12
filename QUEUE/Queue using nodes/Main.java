@@ -13,11 +13,23 @@ public class Main {
         }catch(RuntimeException e){
             System.out.println(e.getMessage());
         }
-        PriorityQueue pQueue = new PriorityQueue();
-        pQueue.enqueue(12,1);
-        pQueue.enqueue(5,2);
-        pQueue.enqueue(1,-1);
-        pQueue.printQueue();
+
+
+
+
+
+
+
+
+
+
+
+        
+//        PriorityQueue pQueue = new PriorityQueue();
+//        pQueue.enqueue(12,1);
+//        pQueue.enqueue(5,2);
+//        pQueue.enqueue(1,-1);
+//        pQueue.printQueue();
     }
 
     static void reverseQueue(Queue q) {

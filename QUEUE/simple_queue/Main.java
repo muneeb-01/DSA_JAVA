@@ -22,7 +22,23 @@ public class Main {
             System.out.println(e.getMessage());
         }
 
+        simulatePrinterQueue();
+
     }
+
+    public static void simulatePrinterQueue() {
+        Queue printerQueue = new Queue(5);
+        // Enqueue jobs
+        printerQueue.enqueue(101);
+        printerQueue.enqueue(102);
+        printerQueue.enqueue(103);
+
+        // Process jobs
+        while (!printerQueue.isEmpty()) {
+            System.out.println("Processing job ID: " + printerQueue.dequeue());
+        }
+    }
+
 }
 
 class Queue{
