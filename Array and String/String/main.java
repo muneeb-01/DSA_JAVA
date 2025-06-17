@@ -1,11 +1,61 @@
 import java.util.*;
 
 public class main {
-public static void main(String[] args) {
-    System.out.println("The given Strings are anagram. "+isAnagram("Muneeb","beanum"));
-    System.out.println("The given Strings is Palindrome. "+isPalindrome("tibit"));
-    Repeating_char_in_String("Muneeb mughal");
-}
+    public static void main(String[] args) {
+        removeElemlessThanK(2, "Muneeb");
+    }
+
+    static void removeElemlessThanK(int k, String str) {
+        str = str.toLowerCase().replaceAll("\\s", "");
+        char[] charArray = str.toCharArray();
+
+        // Count frequencies
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (char c : charArray) {
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+
+        // Build new string with only chars having freq >= k
+        StringBuilder result = new StringBuilder();
+        for (char c : charArray) {
+            if (map.get(c) >= k) {
+                result.append(c);
+            }
+        }
+
+        // Output
+        System.out.println("Filtered string (only chars with freq >= " + k + "): " + result);
+    }
+
+
+    static void mostFrequentChar(String str) {
+        str = str.toLowerCase().replaceAll("\\s", "");
+
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (char c : str.toCharArray()) {
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+
+        ArrayList<Character> mostFrequent = new ArrayList<>();
+        int maxCount = 0;
+
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            int count = entry.getValue();
+
+            if(count > maxCount) {
+                mostFrequent.clear();
+                mostFrequent.add(entry.getKey());
+                maxCount = count;
+            }else if(count == maxCount){
+                mostFrequent.add(entry.getKey());
+            }
+
+        }
+
+        System.out.println(mostFrequent + " = " + maxCount);
+
+    }
+
 
     static void Repeating_char_in_String(String str) {
         str = str.toLowerCase().replaceAll("\\s", "");
